@@ -7,7 +7,7 @@ class Parser
   end
 
   def call
-    Dir.foreach('../../db/data') do |x|
+    Dir.foreach('../db/data') do |x|
       next if x.start_with?(".") 
       splitter(x)
       create_song

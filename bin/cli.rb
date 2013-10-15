@@ -1,18 +1,14 @@
-require_relative './student_class.rb'
-require_relative './student_scrape_class.rb'
+require_relative '../config/environment.rb'
+
+class CLI
+
+    APPROVED_COMMANDS = [:list, :html, :help, :exit]
 
 
-class CLIStudent
-
-    attr_reader :students
-
-    APPROVED_COMMANDS = [:list, :show, :help, :exit]
-
-
-    def initialize(student_array)
-        @students = student_array
+    def initialize
+        initial = Parser.new('hello')
+        initial.call
         @on = true
-
     end
 
     def call
@@ -23,7 +19,7 @@ class CLIStudent
         puts "* Welcome to the Flatiron School student command line browser. *"
         puts "* ------------------------------------------------------------ *"
         puts "*                    presented by...                           *"
-        puts "*                          Team Middle                         *"
+        puts "*                   Team TableStealers                         *"
         puts "****************************************************************"
         system("say welcome to the flatiron school student command line browser")
         puts
@@ -37,9 +33,8 @@ class CLIStudent
         system(" say try not. ")
         system(" say do. or do not")
         system(" say there is no try.")
-        while self.on?
-            self.help
-        end
+        input = gets.chomp.downcase
+        command(input)
     end
 
     def on?
@@ -67,59 +62,64 @@ class CLIStudent
     
     def help
         puts
-        puts "Here are some things you can do "
+        puts "Here are 3 options you have, User. "
         puts " ------------------------------ "
-        puts "  *  Type 'list' to list all the students in the class"
-        puts "  *  Type 'show,' and then when prompted, enter a "
-        puts "     student's name or ID number to browse their info"
+        puts "  *  Type 'list' to list all of the songs in database"
+        puts "  *  Type 'html' to generate the pages for each artist"
+        puts "     name or album"
         puts "  *  Type exit to quit"
         input = gets.downcase.strip
         command(input)
     end
 
     def list
-        self.students.each_with_index do |student,idx|
+        Artist.all.each_with_index do |artist,idx|
             if idx.even?
-                print "#{student.name}".ljust(10)
+                print "#{artist.name}".ljust(10)
             else
-                puts "#{student.name}".rjust(50)
+                puts "#{artist.name}".rjust(50)
             end
         end
         puts
         system("say by the way you are super cool and everyone likes you")
     end
 
-    def show
-        puts "Enter a name or ID number"
-        input = gets.strip.downcase
-        if input.to_i > 0
-            output = Student.find(input.to_i)
-            print_student_info(output)
-            return
-        else
-            output = Student.find_by_name(input)
-            output.each do |thing|
-                print_student_info(thing)
-            end
+    def html
 
-            return
-        end
-            puts "Oh no!"
-            system("say mistakes")
+        # puts "Enter a name or ID number"
+        # input = gets.strip.downcase
+        # if input.to_i > 0
+        #     output = Student.find(input.to_i)
+        #     print_student_info(output)
+        #     return
+        # else
+        #     output = Student.find_by_name(input)
+        #     output.each do |thing|
+        #         print_student_info(thing)
+        #     end
+
+        #     return
+        # end
+        #     puts "Oh no!"
+        #     system("say mistakes")
     end
 
-    def print_student_info(student)
-        puts "-------------------------------------------------"
-        puts "Student name: #{student.name}"
-        puts "Website link: #{student.website}"
-        puts "Twitter page: #{student.twitter}"
-        puts "LinkedIn page: #{student.linkedin}"
-        puts "-------------------------------------------------"
-        system("say #{student.name}")
-    end
+
+
+    # def print_student_info(student)
+    #     puts "-------------------------------------------------"
+    #     puts "Student name: #{student.name}"
+    #     puts "Website link: #{student.website}"
+    #     puts "Twitter page: #{student.twitter}"
+    #     puts "LinkedIn page: #{student.linkedin}"
+    #     puts "-------------------------------------------------"
+    #     system("say #{student.name}")
+    # end
     
 end
 
+a = CLI.new
+a.call
 
 
 
