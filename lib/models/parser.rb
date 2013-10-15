@@ -7,7 +7,7 @@ class Parser
   end
 
   def call
-    Dir.foreach('/Users/tiffanypeon/Development/code/team-table-stealers/playlister-tp/playlister-rb-unit-1/db/data') do |x|
+    Dir.foreach('../../db/data') do |x|
       next if x.start_with?(".") 
       splitter(x)
       create_song
@@ -30,7 +30,7 @@ class Parser
     s = Song.new.tap {|x| x.name = song_title}
     s.genre = Genre.new.tap {|x| x.name = genre_name}
     # unless @@artists.include?(self)
-    Artist.new(artist_name).tap {|x| x.add_song(s)}
+    Artist.new.tap {|x| x.add_song(s); x.name = artist_name}
   end
 
   def create_genre

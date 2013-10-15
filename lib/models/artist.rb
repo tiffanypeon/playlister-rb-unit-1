@@ -1,17 +1,10 @@
 class Artist
   attr_accessor :name, :songs, :genres 
   @@artists = []
-  def initialize(artist_name)
+  def initialize
     @songs = []
     @genres = []
-    @name = artist_name
-    if @@artists.count == 0 
-      @@artists << self
-    else 
-      @@artists.each do |x| 
-        @@artists << self unless x.name == self.name
-        end
-      end
+    @@artists << self
   end 
 
   def add_song(song)
