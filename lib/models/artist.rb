@@ -5,13 +5,13 @@ class Artist
     @songs = []
     @genres = []
     @name = artist_name
-      if @@artists.count == 0 
-        @@artists << self
-      else 
-        @@artists.each do |x| 
+    if @@artists.count == 0 
+      @@artists << self
+    else 
+      @@artists.each do |x| 
         @@artists << self unless x.name == self.name
+        end
       end
-    end
   end 
 
   def add_song(song)
