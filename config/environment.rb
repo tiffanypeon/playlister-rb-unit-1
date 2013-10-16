@@ -8,3 +8,4 @@ require_relative '../bin/cli.rb'
 
 
 require 'erb'
+require 'youtube_search'

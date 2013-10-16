@@ -120,8 +120,8 @@ class CLI
     
 end
 
-a = CLI.new
-a.call
+# a = CLI.new
+# a.call
 
 
 

@@ -29,7 +29,7 @@ class Parser
 
     s = Song.new.tap {|x| x.name = song_title}
 
-    s.genre = Genre.new.tap {|x| x.name = genre_name}
+    s.genre = Genre.find(genre_name) || Genre.new.tap {|x| x.name = genre_name}
 
     artist = Artist.find(artist_name) || Artist.new.tap {|x| x.name = artist_name}
     artist.add_song(s)
