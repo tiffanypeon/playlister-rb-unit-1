@@ -6,8 +6,8 @@ class CLI
 
 
     def initialize
-        initial = Parser.new('hello')
-        initial.call
+        #initial = Parser.new('hello')
+        #initial.call
         @on = true
     end
 
