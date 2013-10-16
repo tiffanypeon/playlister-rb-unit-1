@@ -1,0 +1,13 @@
+<html>
+<body>
+  <h1>Artists</h1>
+  <p><%= @artists.count %></p>
+  <ol>
+    <% @artists.each do |artist| %>
+      <li>
+        <p><a href="artists/<%= artist.name.gsub(' ', '_') %>.html"><%= artist.name %></a></p>
+      </li>
+    <% end %>
+  </ol>
+</body>
+</html>
