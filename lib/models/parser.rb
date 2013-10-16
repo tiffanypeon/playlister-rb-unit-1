@@ -7,15 +7,14 @@ class Parser
   end
 
   def call
-    Dir.foreach('../db/data') do |x|
-      next if x.start_with?(".") 
-      splitter(x)
-      create_song
+    Dir.foreach('db/data') do |string|
+      next if string.start_with?(".") 
+      create_song(splitter(string))
     end
   end
 
   def splitter(string)
-    @split_array = string.scan(/(.*) - (.*) \[(.*)\]\.mp3/).first
+    string.scan(/(.*) - (.*) \[(.*)\]\.mp3/).first
   end
 
   # def create_artist
@@ -23,25 +22,28 @@ class Parser
   #   Artist.new.tap {|x| x.name= artist_name}
   # end
 
-  def create_song
-    artist_name = @split_array[0]
-    song_title = @split_array[1]
-    genre_name = @split_array[2]
+  def create_song(split_array)
+    artist_name = split_array[0]
+    song_title = split_array[1]
+    genre_name = split_array[2]
+
     s = Song.new.tap {|x| x.name = song_title}
+
     s.genre = Genre.new.tap {|x| x.name = genre_name}
-    # unless @@artists.include?(self)
-    Artist.new.tap {|x| x.add_song(s); x.name = artist_name}
+
+    artist = Artist.find(artist_name) || Artist.new.tap {|x| x.name = artist_name}
+    artist.add_song(s)
   end
 
   def create_genre
-    genre_name = @split_array[2]
+    genre_name = split_array[2]
     
   end
 
 end 
 
-parser= Parser.new('path')
-parser.call
-Artist.all.each {|x| puts x.name}
+# parser= Parser.new('path')
+# parser.call
+# Artist.all.each {|x| puts x.name}
 # Song.all.each {|x| puts x.name}
 # pp Genre.all 

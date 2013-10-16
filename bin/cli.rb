@@ -21,7 +21,7 @@ class CLI
         puts "*                    presented by...                           *"
         puts "*                   Team TableStealers                         *"
         puts "****************************************************************"
-        system("say welcome to the flatiron school student command line browser")
+        # system("say welcome to the flatiron school student command line browser")
         puts
 
         puts "                .--.                  Try not.
@@ -30,9 +30,9 @@ class CLI
                     ::::::-:.`'..`'.:-::::::
                     ::::::::\\ `--' /::::::::              -Yoda"
 
-        system(" say try not. ")
-        system(" say do. or do not")
-        system(" say there is no try.")
+        # system(" say try not. ")
+        # system(" say do. or do not")
+        # system(" say there is no try.")
         input = gets.chomp.downcase
         command(input)
     end
@@ -74,14 +74,16 @@ class CLI
 
     def list
         Artist.all.each_with_index do |artist,idx|
+            previous_artist = Artist.all[idx - 1]
             if idx.even?
-                print "#{artist.name}".ljust(10)
+                print "#{artist.name}"
             else
+                print ' ' * (30 - previous_artist.name.length)
                 puts "#{artist.name}".rjust(50)
             end
         end
         puts
-        system("say by the way you are super cool and everyone likes you")
+        # system("say by the way you are super cool and everyone likes you")
     end
 
     def html

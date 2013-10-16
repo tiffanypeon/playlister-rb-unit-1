@@ -5,7 +5,7 @@ class Artist
     @songs = []
     @genres = []
     @@artists << self
-  end 
+  end
 
   def add_song(song)
     self.songs << song
@@ -25,5 +25,11 @@ class Artist
 
   def self.count
     @@artists.count
+  end
+
+  def self.find(name)
+    @@artists.select do |artist|
+      name == artist.name
+    end.first
   end
 end
