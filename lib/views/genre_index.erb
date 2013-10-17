@@ -6,7 +6,7 @@
     <% @genres.sort_by!{ |genre| genre.songs.count }.reverse! %>
     <% @genres.each do |genre| %>
       <li>
-        <p><a href="genres/<%= genre.name.gsub(' ', '_') %>.html"><%= genre.name.capitalize %></a>
+        <p><a href="genres/<%= genre.name.gsub(' ', '_') %>.html"><%= genre.name.capitalize %> </a>
           - <%= genre.songs.count %> Songs, <%= genre.artists.count %> Artists  </p>
       </li>
     <% end %>

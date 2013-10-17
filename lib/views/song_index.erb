@@ -1,0 +1,13 @@
+<html>
+<body>
+  <h1>Songs</h1>
+  <p><%= @songs.count %></p>
+  <ol>
+    <% @songs.each do |song| %>
+      <li>
+        <p><a href="songs/<%= song.name.gsub(' ', '_') %>.html"><%= song.name %></a></p>
+      </li>
+    <% end %>
+  </ol>
+</body>
+</html>

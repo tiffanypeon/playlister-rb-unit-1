@@ -39,6 +39,20 @@ class SiteGenerate
       end
     end
 
+    song_index = ERB.new(File.open('lib/views/song_index.erb').read)
+
+    File.open('_site/songs.html', 'w+') do |f|
+      f << song_index.result
+    end  
+
+    song_profile = ERB.new(File.open('lib/views/song_profile.erb').read)
+
+    Song.all.each do |song_object|
+      File.open("_site/songs/#{song_object.name.gsub(' ', '_')}.html", 'w+') do |f|
+        f << song_profile.result(binding)
+      end
+    end 
+
   end
 
 end
