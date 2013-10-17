@@ -1,13 +1,18 @@
 <html>
+<head>
+  <link rel="stylesheet" href="assets.css">
+  </head>
   <body>
     <h1><%= song_object.name %> </h1>
     <ol>
       <% song_object.name %>
         <li>
-          <p><%= song_object.artist.name %> - 
-            <%= song_object.genre.name.capitalize %></p>
+          <p><a href="../artists/<%= song_object.artist.name.gsub(" ", "_") %>.html"><%= song_object.artist.name %></a> - 
+            <a href="../genres/<%= song_object.genre.name.gsub(" ", "_")%>.html"><%= song_object.genre.name.capitalize %></a></p>
         </li>
     </ol>
-
-  </body>
+<div class="footer"> <p> <a href="index.html">Home</a> - Team Table Stealers - all your tables are belong to us
+</p>
+</div>
+</body>
 </html>

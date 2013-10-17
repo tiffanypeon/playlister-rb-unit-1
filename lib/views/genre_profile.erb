@@ -1,13 +1,19 @@
 <html>
+<head>
+  <link rel="stylesheet" href="assets.css">
+  </head>
   <body>
     <h1><%= genre_object.name.capitalize %> - <%= genre_object.songs.count %> songs</h1>
     <ol>
       <% genre_object.songs.each do |song| %>
         <li>
-          <p> <a href="artists/<%= song.artist.name.gsub(" ", "_")%>.html"><%= song.artist.name %></a> - <a href="#"><%= song.name %> </a></p>
+          <p> <a href="../artists/<%= song.artist.name.gsub(" ", "_")%>.html"><%= song.artist.name %></a> - <a href="../songs/<%= song.name.gsub(" ", "_") %>.html"><%= song.name %> </a></p>
         </li>
       <% end %>
     </ol>
 
   </body>
+<div class="footer"> <p> <a href="index.html">Home</a> - Team Table Stealers - all your tables are belong to us
+</p>
+</div>
 </html>

@@ -1,10 +1,14 @@
 <html>
+<head>
+  <link rel="stylesheet" href="assets.css">
+  </head>
   <body>
-    <h1><%= artist_object.name %> - <%= artist_object.songs.count %> Songs</h1>
+    <h1><%= artist_object.name %> - </h1>
+    <h2> Song count: <%= artist_object.songs.count %></h2>
     <ol>
       <% artist_object.songs.each do |song| %>
         <li>
-          <p><%= song.name %> - <%= song.genre.name %></p>
+          <p><a href="../songs/<%= song.name.gsub(' ', '_') %>.html"><%= song.name %></a> - <a href="../genres/<%= song.genre.name.gsub(' ', '_') %>.html"><%= song.genre.name %></a></p>
           <p>
             <% id = YoutubeSearch.search("#{artist_object.name} - #{song.name}").first['video_id'] %>
             <%= %{<iframe src="http://www.youtube.com/embed/#{id}" width=640 height=480 frameborder=0></iframe>} %>
@@ -14,4 +18,7 @@
     </ol>
 
   </body>
+<div class="footer"> <p> <a href="index.html">Home</a> - Team Table Stealers - all your tables are belong to us
+</p>
+</div>
 </html>
