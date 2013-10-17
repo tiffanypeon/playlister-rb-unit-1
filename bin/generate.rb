@@ -5,21 +5,23 @@ require 'youtube_search'
 class SiteGenerate
 
   def generate
+    index = ERB.new(File.open('lib/views/index.erb').read)
+
+    File.open('_site/index.html', 'w+') do |f|
+      f << index.result
+    end
+
     artist_index = ERB.new(File.open('lib/views/artist_index.erb').read)
 
     File.open('_site/artists.html', 'w+') do |f|
       f << artist_index.result
     end
 
-    p "created artist index"
-
     genre_index = ERB.new(File.open('lib/views/genre_index.erb').read)
 
     File.open('_site/genres.html', 'w+') do |f|
       f << genre_index.result
-    end
-    
-    p "created genre index"
+    end   
 
     artist_profile = ERB.new(File.open('lib/views/artist_profile.erb').read)
 
@@ -29,7 +31,14 @@ class SiteGenerate
       end
     end
 
-    p "created all artist pages"
+    genre_profile = ERB.new(File.open('lib/views/genre_profile.erb').read)
+
+    Genre.all.each do |genre_object|
+      File.open("_site/genres/#{genre_object.name.gsub(' ', '_')}.html", 'w+') do |f|
+        f << genre_profile.result(binding)
+      end
+    end
+
   end
 
 end
