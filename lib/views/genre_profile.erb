@@ -1,10 +1,10 @@
 <html>
   <body>
-    <h1><%= genre_object.name %> - <%= genre_object.songs.count %> Songs</h1>
+    <h1><%= genre_object.name.capitalize %> - <%= genre_object.songs.count %> songs</h1>
     <ol>
       <% genre_object.songs.each do |song| %>
         <li>
-          <p> <%= song.name %></p>
+          <p> <a href="artists/<%= song.artist.name %>.html"><%= song.artist.name %></a> - <a href="#"><%= song.name %> </a></p>
         </li>
       <% end %>
     </ol>

@@ -4,7 +4,7 @@
     <ol>
       <% artist_object.songs.each do |song| %>
         <li>
-          <p><%= song.name %></p>
+          <p><%= song.name %> - <%= song.genre.name %></p>
           <p>
             <% id = YoutubeSearch.search("#{artist_object.name} - #{song.name}").first['video_id'] %>
             <%= %{<iframe src="http://www.youtube.com/embed/#{id}" width=640 height=480 frameborder=0></iframe>} %>
