@@ -8,6 +8,7 @@ class Artist
   end
 
   def add_song(song)
+    song.artist = self
     self.songs << song
     self.genres << song.genre
     if !song.genre.artists.include?(self)
